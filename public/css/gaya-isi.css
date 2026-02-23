@@ -1,9 +1,23 @@
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0099cc 0%, #006699 40%, #004d80 100%);
+  /* background: linear-gradient(135deg, #0099cc 0%, #006699 40%, #004d80 100%); */
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url("/images/cc-dremina.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* margin: 0; */
   overflow: auto;
   position: relative;
+}
+
+.navbar {
+  /* Garis tipis di bawah */
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.5);  */
+  /* position: relative; */
+  z-index: 100;
+  background-color: rgba(28, 121, 202, 0.5) !important;
+  backdrop-filter: blur(10px);
 }
 
 /* Indonesia map background */
@@ -33,7 +47,7 @@ body {
 }
 
 /* Decorative lines */
-.lines-bg {
+/* .lines-bg {
   position: absolute;
   inset: 0;
   background:
@@ -41,7 +55,7 @@ body {
     linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.04) 49%, rgba(255,255,255,0.04) 51%, transparent 52%);
   background-size: 200px 200px;
   z-index: 0;
-}
+} */
 
 /* Top bar */
 .top-bar {

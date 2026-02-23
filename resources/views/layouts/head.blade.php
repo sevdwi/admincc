@@ -16,24 +16,26 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link rel="stylesheet" href="{{ asset('css/gaya.css') }}">
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
-<style>
+<!-- <style>
     body {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url("{{ asset('images/cc-gemini.png') }}");
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url("{{ asset('images/cc-dremina.png') }}");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     margin: 0;
     }
-</style>
+</style> -->
 </head>
 <body>
+    
+<main>
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-        <div class="container-fluid d-flex justify-content-evenly">
-            <a class="navbar-brand fw-bold fs-6 text-uppercase " href="#">Admin Center</a>
-            <!-- <div class="d-flex align-items-center">
-            </div> -->
-        </div>
+    <nav>
+        <ul class="navbar nav nav-pills nav-fill">
+            <li class="nav-item welcome-text">
+                <h3 class="nav-link text-uppercase text-white">Admin Center</h3>
+            </li>
+        </ul>
     </nav>
         @yield('content')
     {{-- Bootstrap JS --}}
@@ -45,6 +47,6 @@
 
     <script src="{{ asset('js/particle.js') }}"></script>
 
-
+</main>
 </body>
 </html>

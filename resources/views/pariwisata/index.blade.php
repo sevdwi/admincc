@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h3>Data pariwisata</h3>
+    <h3 class="text-center text-white my-4">Data pariwisata</h3>
 
     <a href="{{ route('pariwisata.create') }}" class="btn btn-primary mb-3">Tambah</a>
 
@@ -35,5 +35,6 @@
         </tr>
         @endforeach
     </table>
+    <a href="{{route('dashboard')}}" class="btn btn-success mb-3">Kembali</a>
 </div>
 @endsection
