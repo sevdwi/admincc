@@ -1,12 +1,6 @@
 @extends('layouts.head-isi')
 
 @section('content')
-<div class="map-bg"></div>
-  <div class="lines-bg"></div>
-  <div class="dot dot-1"></div>
-  <div class="dot dot-2"></div>
-  <div class="dot dot-3"></div>
-  <div class="dot dot-4"></div>
 
 
   <!-- Main Content -->

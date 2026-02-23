@@ -1,8 +1,9 @@
-@extends('layouts.head')
+@extends('layouts.head-isi')
 
 @section('content')
-<div class="container">
-    <h3 class="text-center text-white my-4">Data pariwisata</h3>
+
+<div class="container" style=" position: relative;">
+    <h1 class="text-center text-white text-fw-bold my-4">Data Pariwisata</h1>
 
     <a href="{{ route('pariwisata.create') }}" class="btn btn-primary mb-3">Tambah</a>
 
@@ -37,4 +38,6 @@
     </table>
     <a href="{{route('dashboard')}}" class="btn btn-success mb-3">Kembali</a>
 </div>
+
+
 @endsection

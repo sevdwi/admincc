@@ -33,7 +33,7 @@
     <nav>
         <ul class="navbar nav nav-pills nav-fill">
             <li class="nav-item welcome-text">
-                <h3 class="nav-link text-uppercase text-white">Admin Center</h3>
+                <h1 class="nav-link text-uppercase text-white">Admin Center</h1>
             </li>
         </ul>
     </nav>

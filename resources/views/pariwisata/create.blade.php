@@ -1,7 +1,7 @@
-@extends('layouts.head')
+@extends('layouts.head-isi')
 
 @section('content')
-<div class="container">
+<div class="container" style=" position: relative;">
     <h3 class="text-center text-white my-4">Tambah pariwisata</h3>
     <a href="{{route('dashboard')}}" class="btn btn-success mt-3 mb-3">Kembali</a>
     <form action="{{ route('pariwisata.store') }}" method="POST">

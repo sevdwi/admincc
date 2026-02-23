@@ -45,6 +45,14 @@
             </li>
         </ul>
     </nav>
+    
+    <div class="map-bg"></div>
+        <div class="lines-bg"></div>
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+        <div class="dot dot-4"></div>
+
         @yield('content')
     {{-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
