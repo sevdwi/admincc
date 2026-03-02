@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div id="particles">
-    <div class="container-fluid main-content d-flex justify-content-evenly">
-            <div class="align-self-start" style="width:400px;height:330px;margin-top: 150px">
+<div id="particles" style="overflow: auto">
+    <div class="container-fluid main-content d-flex justify-content-evenly" style="margin-top: 100px ; margin-bottom: 200px;">
+            <div class="align-self-start" style="width:400px;height:330px;">
                 <div class="card shadow" style="background: rgba(255, 255, 255, 0.5); border: none;">
                     <div class="card-body text-center">
                         <img src="{{ asset('images/server.png') }}" width="60" class="mb-3">

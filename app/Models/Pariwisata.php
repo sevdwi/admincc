@@ -15,4 +15,9 @@ class Pariwisata extends Model
         'alamat',
         'latlong',
     ];
+
+    public function images()
+    {
+        return $this->hasMany(PariwisataImage::class);
+    }
 }
