@@ -1,54 +1,151 @@
 @extends('layouts.head')
 
 @section('content')
-    {{-- Content --}}   
-<div id="particles">
-    <div class="container-fluid main-content d-flex justify-content-evenly">
-            <div class="align-self-center" style="width:400px;height:330px;">
-                <div class="card shadow" style="background: rgba(255, 255, 255, 0.5); border: none;">
-                    <div class="card-body text-center">
-                        <img src="{{ asset('images/server.png') }}" width="60" class="mb-3">
-                        <form action="/login" method="POST">
-                        @csrf
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control"  id="username" name="username" required autofocus >                               
-                            </div>
-                            <!-- <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required  >
-                            </div> -->
-                            <div class="mb-3">
-                                <label class="form-label">Nomor HP</label>
-                                <input type="number" class="form-control" id="number" name="number" required  >
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" required  >
-                                <div id="emailHelp" class="form-text">We'll never share your password with anyone else.</div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Masuk</button>
-                            <button type="submit" class="btn btn-success"><a href="{{route('users.create')}}"style="color: #fff;">Buat Akun</a></button>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-                        </form>
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Background */
+body {
+    font-family: 'Poppins', sans-serif;
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('/images/cc-dremina.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* penting — jangan punya background sendiri */
+#particles {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: transparent; /* 🔥 ini kuncinya */
+}
+
+/* Glass Card */
+.login-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: all .3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Input */
+.form-control {
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.15rem rgba(13,110,253,.25);
+    border-color: #0d6efd;
+}
+
+/* Button */
+.btn-primary {
+    border-radius: 12px;
+    padding: 10px;
+    font-weight: 500;
+    letter-spacing: .3px;
+    transition: all .25s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.03);
+}
+
+/* Title */
+.login-title {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Error Alert */
+.alert-custom {
+    background: rgba(255, 0, 0, 0.12);
+    border: 1px solid rgba(255, 0, 0, 0.25);
+    color: #ffb3b3;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 15px;
+}
+</style>
+
+{{-- Content --}}
+<div id="particles">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="align-self-center" style="width:420px;">
+            
+            <div class="card login-card shadow-lg">
+                <div class="card-body text-center p-4">
+
+                    <img src="{{ asset('images/server.png') }}" width="70" class="mb-3">
+
+                    <div class="login-title text-white mb-4">
+                        Selamat Datang 👋
                     </div>
+
+                    <form action="/login" method="POST">
+                        @csrf
+
+                        <div class="mb-3 text-start">
+                            <label class="form-label text-white">Nomor HP</label>
+                            <input type="number" class="form-control"
+                                   name="number" required>
+                        </div>
+
+                        <div class="mb-2 text-start">
+                            <label class="form-label text-white">Password</label>
+                            <input type="password" class="form-control"
+                                   id="password" name="password" required>
+                        </div>
+
+                        <div class="form-check text-start mb-3">
+                            <input class="form-check-input" type="checkbox" id="showPassword">
+                            <label class="form-check-label text-white">
+                                Tampilkan Password
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            🚀 Masuk
+                        </button>
+                    </form>
+
+                    {{-- Error --}}
+                    @if ($errors->any())
+                        <div class="alert-custom">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
+
                 </div>
-            </div>       
+            </div>
+
+        </div>
     </div>
 </div>
 
-
-@if ($errors->any())
-    <p style="color:red;">{{ $errors->first() }}</p>
-@endif
-
-    <!-- view passowrd -->
-    <script type="text/javascript">
-        const showPassword = document.getElementById("showPassword");
-        const passwordField = document.getElementById("password");
-
-        showPassword.addEventListener("change", function () {
-            passwordField.type = this.checked ? "text" : "password";
-        });
-    </script>
+{{-- Show Password --}}
+<script>
+document.getElementById("showPassword").addEventListener("change", function () {
+    document.getElementById("password").type =
+        this.checked ? "text" : "password";
+});
+</script>
 @endsection
