@@ -1,24 +1,7 @@
 @extends('layouts.head-isi')
 
 @section('content')
-<div class="map-bg"></div>
-  <div class="lines-bg"></div>
-  <div class="dot dot-1"></div>
-  <div class="dot dot-2"></div>
-  <div class="dot dot-3"></div>
-  <div class="dot dot-4"></div>
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="welcome-text"><p>Halo, {{ auth()->user()->name }}</p></div>
-    <a href="#" class="btn-keluar">
-      <i class="bi bi-box-arrow-right"></i>
-      <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button>Logut</button>
-      </form>
-    </a>
-  </div>
 
   <!-- Main Content -->
   <div class="main-content">

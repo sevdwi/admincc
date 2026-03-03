@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name'     => 'required',
-            'email'    => 'required|email|unique:users,email',
+            'email'    => 'required|email|unique:users_admin,email',
             'password' => 'required|min:4',
         ]);
 
@@ -86,7 +86,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
         if (Auth::attempt($request->only('number','password'))) {
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/app/dashboard');
         }
 
         return back()->withErrors(['number' => 'Login gagal!']);
@@ -96,6 +96,6 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/administrator');
     }
 }

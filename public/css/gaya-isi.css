@@ -1,16 +1,30 @@
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0099cc 0%, #006699 40%, #004d80 100%);
+  /* background: linear-gradient(135deg, #0099cc 0%, #006699 40%, #004d80 100%); */
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url("/images/cc-dremina.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* margin: 0; */
   overflow: auto;
   position: relative;
+}
+
+.navbar {
+  /* Garis tipis di bawah */
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.5);  */
+  /* position: relative; */
+  z-index: 100;
+  background-color: rgba(18, 138, 168, 0.5) !important;
+  backdrop-filter: blur(10px);
 }
 
 /* Indonesia map background */
 .map-bg {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px);
   background-size: 30px 30px;
   z-index: 0;
 }
@@ -19,7 +33,7 @@ body {
 .dot {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.8);
   animation: pulse 3s ease-in-out infinite;
 }
 .dot-1 { width: 8px; height: 8px; top: 18%; left: 38%; animation-delay: 0s; }
@@ -33,7 +47,7 @@ body {
 }
 
 /* Decorative lines */
-.lines-bg {
+/* .lines-bg {
   position: absolute;
   inset: 0;
   background:
@@ -41,7 +55,7 @@ body {
     linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.04) 49%, rgba(255,255,255,0.04) 51%, transparent 52%);
   background-size: 200px 200px;
   z-index: 0;
-}
+} */
 
 /* Top bar */
 .top-bar {
@@ -115,7 +129,7 @@ body {
   height: 180px;
   border-radius: 50%;
   background: radial-gradient(circle at 40% 35%, #f0f0f0, #d0d0d0);
-  border: 4px solid #2060d6;
+  border: 4px solid #0cbe92;
   display: flex;
   flex-direction: column;
   align-items: center;
