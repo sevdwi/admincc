@@ -10,6 +10,8 @@ Route::get('/administrator', [UserController::class,'loginForm'])->name('login')
 Route::post('/login', [UserController::class,'login']);
 Route::post('/logout', [UserController::class,'logout'])->name('logout');
 Route::get('/privacy', [WelcomeController::class,'privacy'])->name('privacy');
+Route::get('/request-deletion', [WelcomeController::class,'requestDeletion'])->name('request-deletion');
+Route::post('/request-deletion-action', [WelcomeController::class,'requestDeletionAction'])->name('account.deletion.submit');
 
 Route::get('/app/dashboard', function () {
     return view('dashboard');
