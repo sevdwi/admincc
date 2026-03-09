@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pariwisata;
+use App\Models\PariwisataImage;
 use Illuminate\Http\Request;
 
 class PariwisataController extends Controller
@@ -55,6 +56,47 @@ class PariwisataController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+    public function data_images(Pariwisata $pariwisata)
+    { 
+        return view('pariwisata.data_images', compact('pariwisata'));
+    }
+    public function data_images_crt($id){ 
+        $pariwisata = Pariwisata::where('id', $id)->first(); 
+        return view('pariwisata.data_images_crt', compact('pariwisata'));        
+    }
+    
+    public function data_images_store(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'id' => 'required|exists:pariwisata,id',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            $file = $request->file('image');
+            $filename = time().'_'.str_replace(' ', '_', $file->getClientOriginalName());
+
+            // Simpan file ke storage/app/public/pariwisata
+            $path = $file->storeAs('pariwisata', $filename, 'public');
+
+            try {
+                // Insert ke database menggunakan create()
+                PariwisataImage::create([
+                    'pariwisata_id' => (int) $request->id,
+                    'image' => $path
+                ]);
+            } catch (\Throwable $e) {
+                // Tangkap semua error database
+                dd('Gagal simpan database: '.$e->getMessage(), $e);
+            }
+        }
+
+        return redirect()->route('pariwisata.images', $request->id)
+                         ->with('success','Gambar berhasil diupload dan tersimpan');
+    } 
     public function edit(Pariwisata $pariwisata)
     {
         return view('pariwisata.edit', compact('pariwisata'));

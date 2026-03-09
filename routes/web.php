@@ -10,6 +10,8 @@ Route::post('/login', [UserController::class,'login']);
 Route::post('/logout', [UserController::class,'logout'])->name('logout');
 
 Route::get('/app/dashboard', function () {
+    // dd(session()->all());
+    // dd(auth()->user());
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 

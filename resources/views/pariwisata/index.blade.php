@@ -25,12 +25,13 @@
             <td>{{ $w->nama }}</td>
             <td>{{ $w->alamat }}</td>
             <td>
-                <a href="{{ route('pariwisata.edit', $w) }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{{ route('pariwisata.images', $w) }}" class="btn btn-primary btn-sm" title="upload gambar"><i class="fa fa-upload"></i></a>
+                <a href="{{ route('pariwisata.edit', $w) }}" class="btn btn-warning btn-sm" title="edit data"><i class="fa fa-edit"></i></a>
 
                 <form action="{{ route('pariwisata.destroy', $w) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger btn-sm">Hapus</button>
+                    <button class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i></button>
                 </form>
             </td>
         </tr>

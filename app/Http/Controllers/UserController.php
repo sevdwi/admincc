@@ -85,7 +85,10 @@ class UserController extends Controller
     // proses login
     public function login(Request $request)
     {
+        $cek=Auth::attempt($request->only('number','password')); 
         if (Auth::attempt($request->only('number','password'))) {
+            // dd(session()->all());
+            // return redirect()->route('welcome');
             return redirect()->intended('/app/dashboard');
         }
 
