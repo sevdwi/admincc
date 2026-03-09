@@ -16,9 +16,9 @@
       </a>
 
       <!-- Menu Item: Layanan Manajemen ASN Instansi (Top Right) -->
-      <a href="#" class="menu-item item-top-right">
+      <a href="{{route('pariwisata_images.index')}}" class="menu-item item-top-right">
         <i class="bi bi-person-badge"></i>
-        <span>Layanan lainnyaa</span>
+        <span>Pariwisata Images</span>
       </a>
 
       <!-- Menu Item: Layanan Seleksi (Middle Left) -->
