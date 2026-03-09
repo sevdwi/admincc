@@ -50,6 +50,7 @@ class PariwisataController extends Controller
      */
     public function show(Pariwisata $pariwisata)
     {
+        $pariwisata = Pariwisata::with('images')->find($id);
         return view('pariwisata.show', compact('pariwisata'));
     }
 

@@ -21,3 +21,4 @@ class Pariwisata extends Model
         return $this->hasMany(PariwisataImage::class);
     }
 }
+
