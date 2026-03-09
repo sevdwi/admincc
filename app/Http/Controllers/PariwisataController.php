@@ -60,7 +60,8 @@ class PariwisataController extends Controller
 
     public function data_images(Pariwisata $pariwisata)
     { 
-        return view('pariwisata.data_images', compact('pariwisata'));
+        $images = PariwisataImage::with('pariwisata')->latest()->get();
+        return view('pariwisata.data_images', compact('pariwisata','images'));
     }
     public function data_images_crt($id){ 
         $pariwisata = Pariwisata::where('id', $id)->first(); 

@@ -19,6 +19,15 @@
             <th>Foto</th>
             <th>Aksi</th>
         </tr>
+        @foreach($images as $img)
+        <tr>
+            <td>{{$img->pariwisata->nama}}</td>
+            <td><img src="{{ asset('storage/'.$img->image) }}" width="100px" height="100px"><br>{{$img->image}}</td>
+            <td>
+                <a href="#" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
+            </td>
+        </tr>
+        @endforeach
     </table>
     <a href="{{route('pariwisata.index')}}" class="btn btn-success mb-3">Kembali</a>
 </div>
