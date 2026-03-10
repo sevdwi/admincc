@@ -24,13 +24,49 @@
             <td>{{$img->pariwisata->nama}}</td>
             <td><img src="{{ asset('storage/'.$img->image) }}" width="100px" height="100px"><br>{{$img->image}}</td>
             <td>
-                <a href="#" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
+                <a href="{{ route('pariwisata.data_images.edit',$img->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                <button 
+                class="btn btn-sm btn-success btn-view"
+                data-image="{{ asset('storage/'.$img->image) }}"
+                data-bs-toggle="modal"
+                data-bs-target="#imageModal">
+                <i class="fa fa-eye"></i>
+            </button>
             </td>
         </tr>
         @endforeach
     </table>
     <a href="{{route('pariwisata.index')}}" class="btn btn-success mb-3">Kembali</a>
 </div>
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Detail Gambar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+document.querySelectorAll('.btn-view').forEach(button => {
+
+    button.addEventListener('click', function() {
+
+        let image = this.getAttribute('data-image');
+
+        document.getElementById('modalImage').src = image;
+
+    });
+
+});
+</script>
 
 
 @endsection

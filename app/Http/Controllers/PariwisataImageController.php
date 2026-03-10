@@ -22,6 +22,13 @@ class PariwisataImageController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    public function data_images_edit($id)
+    {
+        echo $id;
+        die();
+        $pariwisata = Pariwisata::all();
+        return view('pariwisata_images.create', compact('pariwisata'));
+    }
     public function create()
     {
         $pariwisata = Pariwisata::all();

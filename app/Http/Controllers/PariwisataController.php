@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pariwisata;
 use App\Models\PariwisataImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PariwisataController extends Controller
 {
@@ -67,7 +68,35 @@ class PariwisataController extends Controller
         $pariwisata = Pariwisata::where('id', $id)->first(); 
         return view('pariwisata.data_images_crt', compact('pariwisata'));        
     }
+    public function data_images_edit($id){ 
+        // $pariwisata = Pariwisata::where('id', $id)->first(); 
+
+        $pariwisata = PariwisataImage::with('pariwisata')->where('id', $id)->first();  
+        $id_img=$id;
+        return view('pariwisata.data_images_edit', compact('pariwisata','id_img')); 
+    }
     
+    public function data_images_update(Request $request){
+        $id=$request->id_img; 
+
+        $pariwisata = PariwisataImage::with('pariwisata')->findOrFail($id);   
+        if ($request->hasFile('image')) {
+            // Hapus file lama
+            if ($pariwisata->image && Storage::exists('public/'.$pariwisata->image)) {
+                Storage::delete('public/'.$pariwisata->image);
+            }
+
+            // Upload file baru
+            $path = $request->file('image')->store('pariwisata','public');
+            $pariwisata->image = $path;
+        }
+
+        $pariwisata->save(); 
+        // return redirect()->back()->with('success','Image berhasil diupdate');
+        return redirect()->route('pariwisata.images', $request->id)
+                         ->with('success','Gambar berhasil diupload dan tersimpan');
+
+    }
     public function data_images_store(Request $request)
     {
         // Validasi input
