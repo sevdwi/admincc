@@ -1,6 +1,6 @@
-@extends('layouts.head-isi')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 
   <!-- Main Content -->
@@ -8,7 +8,7 @@
     <div class="menu-container">
 
       <!-- Menu Item: Layanan Individu ASN (Top Left) -->
-      <a href="{{route('pariwisata.index')}}" class="menu-item item-top-left">
+      <a href="<?php echo e(route('pariwisata.index')); ?>" class="menu-item item-top-left">
         <i class="bi bi-brightness-alt-high-fill"></i>
         <span class="text-uppercase">
             <h5> Pariwisata</h5>
@@ -16,7 +16,7 @@
       </a>
 
       <!-- Menu Item: Layanan Manajemen ASN Instansi (Top Right) -->
-      <a href="{{route('pariwisata_images.index')}}" class="menu-item item-top-right">
+      <a href="<?php echo e(route('pariwisata_images.index')); ?>" class="menu-item item-top-right">
         <i class="bi bi-person-badge"></i>
         <span>
           <h5> Gallery Pariwisata</h5>
@@ -31,7 +31,7 @@
 
       <!-- Center BKN Logo -->
       <div class="circle-center">
-      <img src="{{ asset('images/server.png') }}" alt="CC Logo" class="bkn-icon">
+      <img src="<?php echo e(asset('images/server.png')); ?>" alt="CC Logo" class="bkn-icon">
         <div class="bkn-logo-text text-center">Command Center</div>
       </div>
 
@@ -51,4 +51,6 @@
   </div>
 
   <div class="privacy-link">Privacy · Terms</div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.head-isi', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\sevan\Documents\Diskominfo Kerja Teknis\cc\app-laravel\admincc\resources\views/dashboard.blade.php ENDPATH**/ ?>
