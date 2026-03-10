@@ -25,6 +25,7 @@
             <td><img src="{{ asset('storage/'.$img->image) }}" width="100px" height="100px"><br>{{$img->image}}</td>
             <td>
                 <a href="{{ route('pariwisata.data_images.edit',$img->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                <a href="{{ route('pariwisata.data_images.hapus',$img->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                 <button 
                 class="btn btn-sm btn-success btn-view"
                 data-image="{{ asset('storage/'.$img->image) }}"

@@ -75,6 +75,21 @@ class PariwisataController extends Controller
         $id_img=$id;
         return view('pariwisata.data_images_edit', compact('pariwisata','id_img')); 
     }
+    public function data_images_hapus($id){ 
+
+        $pariwisata = PariwisataImage::with('pariwisata')->where('id', $id)->first();  
+        $images = PariwisataImage::findOrFail($id);
+        if($images){
+             $id_pariwisata = $images->pariwisata_id; 
+             // hapus file jika ada
+            if ($images->image) {
+                Storage::disk('public')->delete($images->image);
+            }
+         PariwisataImage::destroy($id);
+            return redirect('/app/pariwisata/'.$id_pariwisata.'/images')
+        ->with('success','Gambar berhasil dihapus'); 
+        }
+    }
     
     public function data_images_update(Request $request){
         $id=$request->id_img; 
