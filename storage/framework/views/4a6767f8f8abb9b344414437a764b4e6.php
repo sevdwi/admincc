@@ -71,4 +71,4 @@ document.querySelectorAll('.btn-view').forEach(button => {
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.head-isi', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp_PHP8\htdocs\admincc\resources\views/pariwisata/data_images.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.head-isi', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/ghaninafiansyah/Documents/CODE/COMMAND_CENTER/CilacapSuperAppAdmin/resources/views/pariwisata/data_images.blade.php ENDPATH**/ ?>
