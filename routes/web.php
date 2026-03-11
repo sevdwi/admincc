@@ -17,9 +17,9 @@ Route::get('/app/dashboard', function () {
     // dd(session()->all());
     // dd(auth()->user());
     return view('dashboard');
-})->middleware('auth')->name('dashboard');
+})->middleware('auth:admin')->name('dashboard');
 
-Route::middleware(['auth'])->prefix('app')->group(function () {
+Route::middleware(['auth:admin'])->prefix('app')->group(function () {
     foreach (glob(__DIR__.'/modules/*.php') as $routeFile) {
         require $routeFile;
     }
