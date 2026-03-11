@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\UserAdmin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // list semua user
+    // list semua admin
     public function index()
     {
-        $users = User::all();
+        $users = UserAdmin::all();
         return view('users.index', compact('users'));
     }
 
@@ -22,34 +21,34 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    // simpan user
+    // simpan admin
     public function store(Request $request)
     {
         $request->validate([
             'name'     => 'required',
             'email'    => 'required|email|unique:users_admin,email',
+            'number'   => 'required|unique:users_admin,number',
             'password' => 'required|min:4',
         ]);
 
-        User::create([
+        UserAdmin::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'number'   => $request->number,
-            'password' => Hash::make($request->password),
+            'password' => $request->password, // auto hash oleh model
         ]);
 
-        // return redirect()->route('users.index');
         return redirect()->route('login');
     }
 
     // form edit
-    public function edit(User $user)
+    public function edit(UserAdmin $user)
     {
         return view('users.edit', compact('user'));
     }
 
     // update
-    public function update(Request $request, User $user)
+    public function update(Request $request, UserAdmin $user)
     {
         $request->validate([
             'name'  => 'required',
@@ -66,14 +65,14 @@ class UserController extends Controller
     }
 
     // delete
-    public function destroy(User $user)
+    public function destroy(UserAdmin $user)
     {
         $user->delete();
         return redirect()->route('users.index');
     }
 
     // ------------------------------------------------------------------
-    // AUTH
+    // AUTH ADMIN
     // ------------------------------------------------------------------
 
     // login form
@@ -85,20 +84,41 @@ class UserController extends Controller
     // proses login
     public function login(Request $request)
     {
-        $cek=Auth::attempt($request->only('number','password')); 
-        if (Auth::attempt($request->only('number','password'))) {
-            // dd(session()->all());
-            // return redirect()->route('welcome');
+        $request->validate([
+            'number'   => 'required',
+            'password' => 'required'
+        ], [
+            'number.required' => 'Nomor harus diisi',
+            'password.required' => 'Password harus diisi'
+        ]);
+
+        $credentials = [
+            'number' => $request->number,
+            'password' => $request->password
+        ];
+
+        if (Auth::guard('admin')->attempt($credentials, $request->remember)) {
+
+            $request->session()->regenerate();
+
             return redirect()->intended('/app/dashboard');
         }
 
-        return back()->withErrors(['number' => 'Login gagal!']);
+        return back()
+            ->withInput()
+            ->withErrors([
+                'login' => 'Nomor atau password salah.'
+            ]);
     }
 
     // logout
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect('/administrator');
     }
 }
