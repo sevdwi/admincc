@@ -20,10 +20,11 @@
         </tr>
         <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <td><?php echo e($img->pariwisata->nama); ?></td>
+            <td><?php echo e($pariwisata->nama); ?></td>
             <td><img src="<?php echo e(asset('storage/'.$img->image)); ?>" width="100px" height="100px"><br><?php echo e($img->image); ?></td>
             <td>
                 <a href="<?php echo e(route('pariwisata.data_images.edit',$img->id)); ?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                <a href="<?php echo e(route('pariwisata.data_images.hapus',$img->id)); ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                 <button 
                 class="btn btn-sm btn-success btn-view"
                 data-image="<?php echo e(asset('storage/'.$img->image)); ?>"

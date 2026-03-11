@@ -21,7 +21,7 @@
         </tr>
         @foreach($images as $img)
         <tr>
-            <td>{{$img->pariwisata->nama}}</td>
+            <td>{{$pariwisata->nama}}</td>
             <td><img src="{{ asset('storage/'.$img->image) }}" width="100px" height="100px"><br>{{$img->image}}</td>
             <td>
                 <a href="{{ route('pariwisata.data_images.edit',$img->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>

@@ -8,7 +8,7 @@
     @csrf  
     <div class="mb-3">
         <label class="form-label">Nama Tempat</label>
-        <input type="text" name="nama" value="{{ $pariwisata->pariwisata->nama }}" class="form-control">
+        <input type="text" name="nama" value="{{ $pariwisata->nama }}" class="form-control">
         <input type="hidden" name="id" value="{{ $pariwisata->pariwisata->id }}" class="form-control">
         <input type="hidden" name="id_img" value="{{ $id_img }}" class="form-control">
     </div> 
