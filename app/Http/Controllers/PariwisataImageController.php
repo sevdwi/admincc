@@ -46,7 +46,7 @@ class PariwisataImageController extends Controller
     {
 
         $request->validate([
-            'image.*' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+            'image.*' => 'required|image|mimes:jpg,jpeg,png,wepb|max:10240'
         ]);
     
         if($request->hasFile('image')){
