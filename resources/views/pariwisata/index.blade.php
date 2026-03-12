@@ -25,7 +25,7 @@
             <td>{{ $w->nama }}</td>
             <td>{{ $w->alamat }}</td>
             <td>
-                <a href="{{ route('pariwisata.images', $w) }}" class="btn btn-primary btn-sm" title="upload gambar"><i class="fa fa-upload"></i></a>
+                <!-- <a href="{{ route('pariwisata.images', $w) }}" class="btn btn-primary btn-sm" title="upload gambar"><i class="fa fa-upload"></i></a> -->
                 <a href="{{ route('pariwisata.edit', $w) }}" class="btn btn-warning btn-sm" title="edit data"><i class="fa fa-edit"></i></a>
 
                 <form action="{{ route('pariwisata.destroy', $w) }}" method="POST" style="display:inline;">

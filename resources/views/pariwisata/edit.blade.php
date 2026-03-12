@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style=" position: relative;">
     <h3 class="text-center text-white my-4">Edit pariwisata</h3>
-    <a href="{{route('dashboard')}}" class="btn btn-success mt-3 mb-3">Kembali</a>
+    <a href="{{route('pariwisata.index')}}" class="btn btn-success mt-3 mb-3">Kembali</a>
 
     <div class="card" style="width: 80rem;">
 

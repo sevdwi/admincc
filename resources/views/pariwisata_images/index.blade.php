@@ -2,46 +2,67 @@
 
 @section('content')
 <div class="container" style=" position: relative;">
-    <!-- <a href="{{ route('pariwisata_images.create') }}" class="btn btn-primary mt-4 mb-4">
-        Tambah Gambar
-    </a> -->
     <h1 class="text-center text-white text-fw-bold my-5">Gallery Gambar Pariwisata</h1>
 
-    <div class="row">
+    <table class="table table-bordered">
 
-        @foreach($images as $img)
+        <tr>
+        <th>No</th>
+        <th>Nama Wisata</th>
+        <th>Jumlah Gambar</th>
+        <th>id</th>
+        <th>Action</th>
+        </tr>
 
-        <div class="col-md-4 col-lg-3 mb-4 my-6">
-            <div class="card shadow-sm h-100">
+        @foreach($pariwisata as $p)
 
-                <img src="{{ asset('storage/'.$img->image) }}" 
-                    class="card-img-top" 
-                    style="height:200px; object-fit:cover;">
+        <tr>
 
-                <div class="card-body text-center">
+            <td>{{ $loop->iteration }}</td>
 
-                    <h6 class="card-title">
-                        {{ $img->pariwisata?->nama ?? 'Pariwisata tidak ditemukan' }}
-                    </h6>
+            <td>{{ $p->nama }}</td>
 
-                    <form action="{{ route('pariwisata_images.destroy',$img->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-sm btn-danger">
-                            Hapus
-                        </button>
-                    </form>
+            <td>{{ $p->images->count() }}</td>
 
-                </div>
+            <td>{{ $p->id}}</td>
 
-            </div>
-        </div>
+        <td>
+
+        <a href="{{ route('pariwisata_images.create',$p->id) }}" class="btn btn-primary btn-sm">
+        Tambah
+        </a>
+
+        @if($p->images->first())
+
+            <!-- <a href="{{ route('pariwisata_images.edit',$p->images->first()->id) }}" class="btn btn-warning btn-sm">
+            <i class="fa fa-edit"></i>
+            </a> -->
+
+            <form action="{{ route('pariwisata_images.destroy',$p->images->first()->id) }}" method="POST" style="display:inline">
+                @csrf
+                @method('DELETE')
+
+                <button class="btn btn-danger btn-sm">
+                <i class="fa fa-trash"></i>
+                </button>
+
+            </form>
+
+            <a href="{{ route('pariwisata_images.show',$p->id) }}" class="btn btn-warning btn-sm"> 
+                Detail
+            </a>
+
+
+        @endif
+
+        </td>
+
+        </tr>
 
         @endforeach
 
-    </div>
-
-    <a href="{{route('dashboard')}}" class="btn btn-success mb-3">Kembali</a>
+    </table>
+    <a href="{{route('dashboard')}}" class="btn btn-success mt-3">Kembali</a>
 
 </div>
 

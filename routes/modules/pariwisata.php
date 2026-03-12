@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PariwisataController;
 
+
 Route::prefix('pariwisata')->name('pariwisata.')->group(function () {
     Route::get('/', [PariwisataController::class, 'index'])->name('index');
     Route::get('/{pariwisata}/images', [PariwisataController::class, 'data_images'])->name('images');
@@ -20,4 +21,5 @@ Route::prefix('pariwisata')->name('pariwisata.')->group(function () {
     Route::put('/{pariwisata}', [PariwisataController::class, 'update'])->name('update');
     Route::patch('/{pariwisata}', [PariwisataController::class, 'update']);
     Route::delete('/{pariwisata}', [PariwisataController::class, 'destroy'])->name('destroy');
+
 });

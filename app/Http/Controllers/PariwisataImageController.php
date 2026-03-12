@@ -14,9 +14,10 @@ class PariwisataImageController extends Controller
      */
     public function index()
     {
-        $images = PariwisataImage::with('pariwisata')->latest()->get();
-        return view('pariwisata_images.index', compact('images'));
-        
+        // $images = PariwisataImage::with('pariwisata')->latest()->get();
+        // return view('pariwisata_images.index', compact('images'));
+        $pariwisata = Pariwisata::with('images')->get();
+        return view('pariwisata_images.index', compact('pariwisata'));        
     }
 
     /**
@@ -29,36 +30,40 @@ class PariwisataImageController extends Controller
         $pariwisata = Pariwisata::all();
         return view('pariwisata_images.create', compact('pariwisata'));
     }
-    public function create()
+    
+    public function create($id)
     {
-        $pariwisata = Pariwisata::all();
+        $pariwisata = Pariwisata::findOrFail($id);
         return view('pariwisata_images.create', compact('pariwisata'));
+
+        // dd($id);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+
         $request->validate([
-            'pariwisata_id' => 'required',
-            'images.*' => 'image|mimes:jpg,jpeg,png|max:2048'
+            'image.*' => 'required|image|mimes:jpg,jpeg,png|max:2048'
         ]);
     
-        if ($request->hasFile('images')) {
+        if($request->hasFile('image')){
     
-            foreach ($request->file('images') as $file) {
+            foreach($request->file('image') as $file){
     
                 $path = $file->store('pariwisata','public');
     
                 PariwisataImage::create([
-                    'pariwisata_id' => $request->pariwisata_id,
+                    'pariwisata_id' => $id,
                     'image' => $path
                 ]);
+    
             }
         }
     
-        return redirect()->back()->with('success','Semua gambar berhasil diupload');
+        return redirect()->route('pariwisata_images.index');
     }
 
     /**
@@ -67,6 +72,9 @@ class PariwisataImageController extends Controller
     public function show(string $id)
     {
         //
+
+        $pariwisata = Pariwisata::with('images')->findOrFail($id);
+        return view('pariwisata_images.show', compact('pariwisata'));
     }
 
     /**
@@ -74,7 +82,8 @@ class PariwisataImageController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $image = PariwisataImage::findOrFail($id);
+        return view('pariwisata_images.edit', compact('image'));
     }
 
     /**
@@ -82,7 +91,19 @@ class PariwisataImageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $image = PariwisataImage::findOrFail($id);
+
+        if($request->hasFile('image')){
+    
+            $file = $request->file('image')->store('pariwisata','public');
+    
+            $image->update([
+                'image' => $file
+            ]);
+        }
+    
+        return redirect()->route('pariwisata_images.index');
+        
     }
 
     /**
