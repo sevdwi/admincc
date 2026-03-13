@@ -45,8 +45,10 @@ class PariwisataImageController extends Controller
     public function store(Request $request, $id)
     {
 
+        // dd($request->all(), $request->file('image'));
+        
         $request->validate([
-            'image.*' => 'required|image|mimes:jpg,jpeg,png,wepb|max:10240'
+            'image.*' => 'required|image|mimes:jpg,jpeg,png,webp|max:10240'
         ]);
     
         if($request->hasFile('image')){

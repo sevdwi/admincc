@@ -36,7 +36,7 @@
                   </span>
                 </div>
                 <p class="fw-semibold text-dark mb-1">Klik atau seret foto ke sini</p>
-                <p class="text-muted small mb-3">Format: JPG, PNG, WEBP (Maks. 5MB per file)</p>
+                <p class="text-muted small mb-3">Format: JPG, PNG, WEBP (Maks. 10 MB per file)</p>
                 <span class="badge rounded-pill px-3 py-2"
                   style="background-color:#e8f5e9;color:#2e7d32;font-size:0.8rem;">
                   <i class="bi bi-images me-1"></i> Bisa pilih banyak foto sekaligus
